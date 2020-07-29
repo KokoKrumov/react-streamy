@@ -78,7 +78,7 @@ class GoogleAuth extends Component {
         return (
             <div>
                 {this.renderAuthButton()}
-                {this.props.userId}
+                {/*{this.props.userId}*/}
             </div>
         )
     }

@@ -58,6 +58,6 @@ export const deleteStream = (id) => async dispatch => {
 
 export const editStream = (id, formValues) => async dispatch => {
     const response = await streams.put(`/streamy/${id}`, formValues);
-    dispatch({type: FETCH_STREAM, payload: response.data})
+    dispatch({type: EDIT_STREAM, payload: response.data})
 }
 

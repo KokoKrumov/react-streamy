@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from "./Header";
-import {BrowserRouter, Route, Link} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 import StreamShow from "./streams/StreamShow";
 import StreamList from "./streams/StreamList";
 import StreamEdit from "./streams/StreamEdit";
