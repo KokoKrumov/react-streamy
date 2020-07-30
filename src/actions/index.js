@@ -32,7 +32,7 @@ export const signOut = () => {
 // ще дефинираме async action creator, всеки път, когато правим
 //async action creator ще ползваме redux thunk
 export const createStream = (formValues) => async dispatch => {
-    const response = streams.post('/streamy', formValues);
+    const response = await streams.post('/streamy', {...formValues});
 
     dispatch({
         type: CREATE_STREAM,
