@@ -28,11 +28,13 @@ export const signOut = () => {
 }
 
 
-//createStream ще вземе всички в аргумента си всички values, които сложим във формата
+//createStream ще вземе в аргумента си всички values, които сложим във формата
 // ще дефинираме async action creator, всеки път, когато правим
 //async action creator ще ползваме redux thunk
-export const createStream = (formValues) => async dispatch => {
-    const response = await streams.post('/streamy', {...formValues});
+//освен dispatch, redux thunk позволява да придадем и getState ф-а, чрез коята да изнесем data от store-a
+export const createStream = (formValues) => async (dispatch, getState) => {
+    const {userId} = getState().auth;
+    const response = await streams.post('/streamy', {...formValues, userId});
 
     dispatch({
         type: CREATE_STREAM,

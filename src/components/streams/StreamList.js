@@ -11,10 +11,24 @@ class StreamList extends Component {
         this.props.fetchStreams();
     }
 
+    renderAdmin(stream) {
+        if (stream.userId === this.props.currentUserId) {
+            return (
+                <div>
+                    <div className="right floated content">
+                        <button className="ui button primary">EDIT</button>
+                        <button className="ui button negative">DELETE</button>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     returnListOfStreams() {
         return this.props.streams.map(stream => {
             return (
                 <div className='item' key={stream.id}>
+                    {this.renderAdmin(stream)}
                     <i className="large camera icon aligned middle"/>
                     <div className="content">
                         {stream.title}
@@ -47,7 +61,8 @@ class StreamList extends Component {
 const mapStateToProps = (state) => {
     return {
         //Object.values прави  списъка с обекти в array
-        streams: Object.values(state.streams)
+        streams: Object.values(state.streams),
+        currentUserId: state.auth.userId
     }
 }
 
