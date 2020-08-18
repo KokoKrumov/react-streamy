@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import {BrowserRouter, Route, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import {fetchStreams} from "../../actions";
 
@@ -41,15 +41,28 @@ class StreamList extends Component {
         })
     }
 
-    render() {
+    renderCreate() {
+        if (this.props.isSignedIn) {
+            return (
+                <div style={{textAlign: 'right', marginTop: '30px'}}>
+                    <Link to='/streams/new' className='ui button primary'>
+                        Create Stream
+                    </Link>
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
 
+    render() {
         return (
             <div>
                 <h2>Streams</h2>
                 <div className='ui called list'>
                     {this.returnListOfStreams()}
                 </div>
-
+                {this.renderCreate()}
             </div>
         )
     }
@@ -62,7 +75,8 @@ const mapStateToProps = (state) => {
     return {
         //Object.values прави  списъка с обекти в array
         streams: Object.values(state.streams),
-        currentUserId: state.auth.userId
+        currentUserId: state.auth.userId,
+        isSignedIn: state.auth.isSignedIn
     }
 }
 
